@@ -16,7 +16,7 @@ setup(
     license="SLAC Open",
     install_requires=requirements,
     include_package_data=True,
-    python_requires=">=3.9",
+    python_requires=">=3.8",
     #entry_points={
     #    "console_scripts": [
     #        "render-from-template=lume_epics.commands.render_from_template:render_from_template",

@@ -24,7 +24,7 @@ class PVAServer(multiprocessing.Process):
 	) -> None:
 		"""Initialize server process."""
 		super().__init__(*args, **kwargs)
-		self._exit_event = multiprocessing.Event()
+		self.exit_event = multiprocessing.Event()
 		self._providers = {}
 		self._pv_vals = pv_vals
 
@@ -33,12 +33,12 @@ class PVAServer(multiprocessing.Process):
 
 		server =  Server(providers=[self._providers])
 
-		while not self._exit_event.is_set():
+		while not self.exit_event.is_set():
 			try:
 				time.sleep(0.1)
 
 			except:
-				self._exit_event.set()
+				self.exit_event.set()
 				server.stop()
 
 

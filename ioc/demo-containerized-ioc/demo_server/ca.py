@@ -15,7 +15,7 @@ class CAServer(multiprocessing.Process):
 	) -> None:
 		"""Initialize CA server process."""
 		super().__init__(*args, **kwargs)
-		self._exit_event = multiprocessing.Event()
+		self.exit_event = multiprocessing.Event()
 		self.ioc =  None
 		self.pv_vals = pv_vals
 
@@ -25,7 +25,7 @@ class CAServer(multiprocessing.Process):
 		try:
 			run(self.ioc.pvdb)
 		except Exception as e:
-			self._exit_event.set()
+			self.exit_event.set()
 			raise e
 
 
