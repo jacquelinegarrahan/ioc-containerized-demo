@@ -1,0 +1,9 @@
+# conda env create -f environment.yml
+name: ioc-demo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - caproto
+  - p4p
+  - numpy
