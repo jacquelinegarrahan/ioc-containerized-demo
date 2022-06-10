@@ -19,8 +19,9 @@ docker build -t demo-client client
 
 ### Running the pvAccess Dockerized IOC
 
-
-
+```
+docker run -p 5075:5075 -p 5076:5076/udp -t demo-io
+```
 
 ### Running the Channel Access IOC
 Because the client will read EPICS Channel Access pvs, a second ioc has been packaged with this example. First set up the environment:
@@ -45,7 +46,7 @@ docker run -e EPICS_CA_ADDR_LIST=host.docker.internal -i -t demo-client
 
 
 ### Environment variables
-The `demo_server` package uses [`caproto`](https://nsls-ii.github.io/caproto/servers.html) for Channel Access [`p4p`](https://github.com/mdavidsaver/p4p) for pvAccess. Each respect the typical EPICS environment variables, `EPICS_CA_` and `EPICS_PVAS_` prefixed. Descriptions for env var function for Channel Access can be found [here](https://epics.anl.gov/EpicsDocumentation/AppDevManuals/ChannelAccess/cadoc_4.htm). Descriptions for pvAccess variables can be found [here](https://mdavidsaver.github.io/pvxs/netconfig.html).
+The `demo_server` package uses [`caproto`](https://nsls-ii.github.io/caproto/servers.html) for Channel Access [`p4p`](https://github.com/mdavidsaver/p4p) for pvAccess. Each respect the typical EPICS environment variables, `EPICS_CA_` and `EPICS_PVAS_` prefixed. Descriptions for env var function for Channel Access can be found [here](https://epics.anl.gov/EpicsDocumentation/AppDevManuals/ChannelAccess/cadoc_4.htm). Some descriptions for pvAccess variables can be found [here](https://mdavidsaver.github.io/pvxs/netconfig.html). I'll add an asterisk for the pvAccess variables because they're not really properly documented anywhere to my knowledge.
 
 
 | Protocol                      | Variables                      |
@@ -53,16 +54,18 @@ The `demo_server` package uses [`caproto`](https://nsls-ii.github.io/caproto/ser
 | Channel Access                | EPICS_CA_ADDR_LIST             |
 |                               | EPICS_CA_AUTO_ADDR_LIST        |
 |                               | EPICS_CA_CONN_TMO              |
-|                               | EPICS_CA_BEACON_PERIOD         |
-|                               | EPICS_CA_REPEATER_PORT         |
-|                               | EPICS_CA_SERVER_PORT           |
+|                               | EPICS_CAS_BEACON_PERIOD        |
+|                               | EPICS_CAS_REPEATER_PORT        |
+|                               | EPICS_CAS_SERVER_PORT          |
 |                               | EPICS_CA_MAX_ARRAY_BYTES       |
+|                               | EPICS_CAS_ADDR_LIST            |
+|                               | EPICS_CAS_SERVER_PORT          |
+|                               | EPICS_CAS_BEACON_ADDR_LIST     |
+|                               | EPICS_CAS_BEACON_PORT          |
 |-------------------------------|--------------------------------|
-| pvAccess                      | EPICS_PVAS_ADDR_LIST           |
-|                               | EPICS_PVAS_AUTO_ADDR_LIST      |
-|                               | EPICS_PVAS_CONN_TMO            |
+| pvAccess                      | EPICS_PVA_ADDR_LIST            |
+|                               | EPICS_PVA_AUTO_ADDR_LIST       |
+|                               | EPICS_PVA_CONN_TMO             |
 |                               | EPICS_PVAS_BEACON_PERIOD       |
 |                               | EPICS_PVAS_SERVER_PORT         |
-
-
-Without set variables, the IOC will run on the defaults. 
+|                               | EPICS_PVAS_BROADCAST_PORT      |
