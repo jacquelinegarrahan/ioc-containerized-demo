@@ -1,0 +1,7 @@
+# conda env create -f environment.yml
+name: ioc-demo-client
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - epics-base
